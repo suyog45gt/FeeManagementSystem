@@ -1,0 +1,72 @@
+# School Fee Management System
+import json
+fee=[]
+class_fee = {
+    "Nursery": 1800,
+    "LKG": 1900,
+    "UKG": 2000,
+    "Class 1": 2100,
+    "Class 2": 2200,
+    "Class 3": 2300,
+    "Class 4": 2400,
+    "Class 5": 2500,
+    "Class 6": 2600,
+    "Class 7": 2700,
+    "Class 8": 2800,
+    "Class 9": 2900,
+    "Class 10": 3000,
+    "Class 11": 3100,
+    "Class 12": 3200
+}
+transport_fee = 500
+hostel_fee = 10000
+def student_info():
+
+    name = input("Enter student name: ")
+    roll_no = input("Enter roll number: ")
+    class_name = input("Enter class (Nursery, LKG, UKG, Class 1-12): ")
+    contact_info = input("Enter contact information: ")
+    
+    student_record = {
+        "name": name,
+        "roll_no": roll_no,
+        "class": class_name,
+        "contact_info": contact_info,
+    }
+    
+    fee.append(student_record)
+    with open("students_data.json", "w") as f:
+        json.dump(fee, f, indent=4)
+
+    print("Student information saved successfully.")
+    return student_record
+
+def total_fee(student_record):
+    class_name = student_record.get("class")
+    transport = input("Does the student require transport? (yes/no): ").lower()
+    hostel = input("Does the student require hostel? (yes/no): ").lower()
+    
+    base_fee = class_fee.get(class_name, 0)
+    total = base_fee
+    
+    if transport == "yes":
+        total += transport_fee
+    if hostel == "yes":
+        total += hostel_fee
+
+    print("\n---------- FEE DETAILS ----------")
+    print("Student Name:", student_record["name"])
+    print("Roll Number:", student_record["roll_no"])
+    print("Class:", class_name)
+    print("Contact:", student_record["contact_info"])
+    print("Base Fee: Rs.", base_fee)
+    print("Transport Fee: Rs.", transport_fee if transport == "yes" else 0)
+    print("Hostel Fee: Rs.", hostel_fee if hostel == "yes" else 0)
+    print("---------------------------------")
+    print("Total Fee: Rs.", total)
+
+
+student=student_info()
+total_fee(student)
+
+
