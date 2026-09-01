@@ -37,7 +37,6 @@ def student_info():
     fee.append(student_record)
     with open("students_data.json", "w") as f:
         json.dump(fee, f, indent=4)
-
     print("Student information saved successfully.")
     return student_record
 
@@ -54,18 +53,20 @@ def total_fee(student_record):
     if hostel == "yes":
         total += hostel_fee
 
-    print("\n---------- FEE DETAILS ----------")
-    print("Student Name:", student_record["name"])
-    print("Roll Number:", student_record["roll_no"])
-    print("Class:", class_name)
-    print("Contact:", student_record["contact_info"])
-    print("Base Fee: Rs.", base_fee)
-    print("Transport Fee: Rs.", transport_fee if transport == "yes" else 0)
-    print("Hostel Fee: Rs.", hostel_fee if hostel == "yes" else 0)
-    print("---------------------------------")
-    print("Total Fee: Rs.", total)
-
-
+    with open("student.txt", "w") as f:
+        f.write("---------- FEE DETAILS ----------\n")
+        f.write("---------------------------------\n")
+        f.write(f"Student Name: {student_record['name']}\n")
+        f.write(f"Roll Number: {student_record['roll_no']}\n")
+        f.write(f"Class: {class_name}\n")
+        f.write(f"Contact: {student_record['contact_info']}\n")
+        f.write(f"Base Fee: Rs. {base_fee}\n")
+        f.write(f"Transport Fee: Rs. {transport_fee if transport == 'yes' else 0}\n")
+        f.write(f"Hostel Fee: Rs. {hostel_fee if hostel == 'yes' else 0}\n")
+        f.write(f"Total Fee: Rs. {total}\n")
+        f.write("---------------------------------\n")
+    with open("student.txt", "r") as f:
+        print(f.read())
 student=student_info()
 total_fee(student)
 

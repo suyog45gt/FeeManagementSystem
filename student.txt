@@ -1,0 +1,11 @@
+---------- FEE DETAILS ----------
+---------------------------------
+Student Name: hari
+Roll Number: 11
+Class: LKG
+Contact: 980000000
+Base Fee: Rs. 1900
+Transport Fee: Rs. 0
+Hostel Fee: Rs. 10000
+Total Fee: Rs. 11900
+---------------------------------
